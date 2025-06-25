@@ -147,15 +147,15 @@ body.dark textarea {
   align-items: center;
   justify-content: center;
   min-width: 100px;
-  height: 40px;          /* exact height */
-  padding: 0 20px;       /* horizontal padding only */
-  line-height: 40px;     /* vertical center text */
+  height: 40px;
+  padding: 0 20px;
+  line-height: 40px;
   font-size: 14px;
   font-weight: 600;
   border-radius: 4px;
   box-sizing: border-box;
   cursor: pointer;
-  border: 1.5px solid;   /* consistent border width */
+  border: 1.5px solid;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
@@ -204,6 +204,32 @@ body.dark .update-button {
 body.dark .update-button:hover {
   background-color: var(--primary-hover);
   border-color: var(--primary-hover);
+}
+
+/* Like Button */
+.like-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.like-button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+body.dark .like-button {
+  background-color: #339cff;
+  border-color: #339cff;
+  color: black;
+}
+
+body.dark .like-button:hover {
+  background-color: #1a73e8;
+  border-color: #1a73e8;
 }
 
 /* Add New Post Button */

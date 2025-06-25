@@ -1,14 +1,16 @@
 [
     {
         "id": 1,
-        "author": "John Doe",
-        "title": "First Post",
-        "content": "This is my first post."
+        "author": "Ed Groell",
+        "title": "Very First Post",
+        "content": "This will be my very first post - Thanks for checking My Blog! And special thanks to the team at Masterschool for helping me build this!!",
+        "likes": 7
     },
     {
         "id": 2,
-        "author": "Jane Doe",
+        "author": "Ed Groell",
         "title": "Second Post",
-        "content": "Let's try to update this post!"
+        "content": "Let's have some fun and play around with this thing now!",
+        "likes": 0
     }
 ]

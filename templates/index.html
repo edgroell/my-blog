@@ -53,6 +53,11 @@
 
         <!-- Post Actions -->
         <div class="post-actions">
+          <form method="POST" action="{{ url_for('like', post_id=post['id']) }}" style="margin: 0;">
+            <button type="submit" class="action-button like-button">
+              👍 {{ post.get('likes', 0) }}
+            </button>
+          </form>
           <a href="{{ url_for('update', post_id=post['id']) }}" class="action-button update-button">Edit</a>
           <form method="POST" action="{{ url_for('delete', post_id=post['id']) }}" style="margin: 0;">
             <button type="submit" class="action-button delete-button">Delete</button>
@@ -65,9 +70,25 @@
 
   <!-- Theme Toggle Script -->
   <script>
-    document.getElementById("theme-switch").addEventListener("change", () => {
-      document.body.classList.toggle("dark");
-    });
+  const checkbox = document.getElementById("theme-switch");
+
+  // On page load, read stored preference and set class + checkbox state
+  const darkMode = localStorage.getItem('darkMode');
+  if (darkMode === 'enabled') {
+    document.body.classList.add('dark');
+    checkbox.checked = true;
+  }
+
+  // On toggle, update localStorage and class
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      document.body.classList.add('dark');
+      localStorage.setItem('darkMode', 'enabled');
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('darkMode', 'disabled');
+    }
+  });
   </script>
 </body>
 </html>
