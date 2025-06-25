@@ -8,53 +8,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Dark Mode Toggle -->
   <div class="theme-toggle-container switch-style">
-  <input type="checkbox" id="theme-switch" />
-  <label for="theme-switch" class="theme-switch-label">
-    <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
+    <input type="checkbox" id="theme-switch" />
+    <label for="theme-switch" class="theme-switch-label">
+      <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
 
-    <span class="theme-switch-slider"></span>
+      <span class="theme-switch-slider"></span>
 
-    <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0021 12.79z"></path>
-    </svg>
-
-  </label>
+      <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 0021 12.79z"></path>
+      </svg>
+    </label>
   </div>
 
+  <!-- Header -->
   <h1>Welcome to My Blog!</h1>
 
+  <!-- Add Post Button -->
   <div class="add-post-button-container">
     <a href="{{ url_for('add') }}" class="add-post-button">Add New Post</a>
   </div>
 
-  <ul>
+  <!-- Blog Posts -->
+  <ul class="post-list">
     {% for post in posts %}
-    <li>
+    <li class="post-item">
       <div class="post">
         <h2>{{ post["title"] }}</h2>
         <p><em>Written by {{ post["author"] }}</em></p>
         <p>{{ post["content"] }}</p>
+
+        <!-- Post Actions -->
+        <div class="post-actions">
+          <form method="POST" action="{{ url_for('delete', post_id=post['id']) }}">
+            <button type="submit" class="action-button delete-button">Delete</button>
+          </form>
+          {# Future placeholders #}
+          {# <button class="action-button update-button">Update</button> #}
+          {# <button class="action-button like-button">Like</button> #}
+        </div>
       </div>
     </li>
     {% endfor %}
   </ul>
 
+  <!-- Theme Toggle Script -->
   <script>
-    const checkbox = document.getElementById("theme-switch");
-    checkbox.addEventListener("change", () => {
+    document.getElementById("theme-switch").addEventListener("change", () => {
       document.body.classList.toggle("dark");
     });
   </script>

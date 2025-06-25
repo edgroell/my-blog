@@ -57,6 +57,17 @@ def add():
     return render_template('add.html')
 
 
+@app.route('/delete/<int:post_id>', methods=['POST'])
+def delete(post_id):
+    blog_posts = fetch_data()
+
+    updated_blog_posts = [post for post in blog_posts if post.get("id") != post_id]
+
+    save_data(updated_blog_posts)
+
+    return redirect(url_for('index'))
+
+
 @app.route('/')
 def index():
     blog_posts = fetch_data()
