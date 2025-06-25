@@ -1,56 +1,290 @@
+:root {
+  --primary-color: #3b4c5e;
+  --primary-hover: #2c3a4a;
+  --neutral-light: #f9f9f9;
+  --neutral-white: #ffffff;
+  --neutral-border: #e0e0e0;
+  --text-color: #2e2e2e;
+  --muted-text: #666666;
+  --font-family: 'Inter', sans-serif;
+}
+
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f0f2f5;
-    padding: 20px;
-    color: #333;
-    line-height: 1.6;
+  font-family: var(--font-family);
+  background-color: var(--neutral-light);
+  padding: 20px;
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+body.dark {
+  --primary-color: #9ecaff;
+  --primary-hover: #73a6df;
+  --neutral-light: #1c1c1e;
+  --neutral-white: #2c2c2e;
+  --neutral-border: #444;
+  --text-color: #e0e0e0;
+  --muted-text: #aaa;
+  background-color: var(--neutral-light);
+  color: var(--text-color);
+}
+
+/* Headings */
 h1 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 30px;
-    font-weight: 300;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: var(--primary-color);
+  margin: 60px 0 40px;
+  font-weight: 400;
 }
 
-.post {
-    background-color: #ffffff;
-    border: 1px solid #e1e8ed;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+/* Form Styling */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--neutral-white);
+  padding: 40px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--neutral-border);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.post:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.post h2 {
-    margin-top: 0;
-    color: #3498db;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
+label {
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
-.post p {
-    margin: 15px 0;
-    color: #555;
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--neutral-border);
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.post em {
-    color: #7f8c8d;
-    font-style: italic;
+body.dark input[type="text"],
+body.dark textarea {
+  background-color: #3a3a3c;
+  color: #f0f0f0;
+  border: 1px solid var(--neutral-border);
 }
 
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 76, 94, 0.1);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Form Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.same-size-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  min-width: 140px;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button[type="submit"].same-size-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+button[type="submit"].same-size-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.cancel-button.same-size-button {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.cancel-button.same-size-button:hover {
+  background-color: #d5d5d5;
+}
+
+body.dark .cancel-button.same-size-button {
+  background-color: #555;
+  color: #eee;
+}
+
+body.dark .cancel-button.same-size-button:hover {
+  background-color: #666;
+}
+
+/* Add Post Button (Index Page) */
+.add-post-button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.add-post-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.add-post-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Blog Posts Display */
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.post {
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.post h2 {
+  margin-top: 0;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--neutral-border);
+  padding-bottom: 10px;
+}
+
+.post p {
+  margin: 15px 0;
+  color: var(--muted-text);
+}
+
+.post em {
+  color: #888;
+  font-style: italic;
+}
+
+/* Modern Dark Mode Toggle */
+#theme-switch {
+  display: none;
+}
+
+.theme-toggle-container.switch-style {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+}
+
+.theme-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  cursor: pointer;
+  background-color: var(--neutral-white);
+  border: 1px solid var(--neutral-border);
+  padding: 6px 12px;
+  border-radius: 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
+}
+
+body.dark .theme-switch-label {
+  background-color: var(--neutral-light);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  flex-shrink: 0;
+  transition: color 0.3s;
+}
+
+.theme-icon.moon {
+  transform: translateY(2px);
+}
+
+body.dark .theme-icon {
+  color: var(--text-color);
+}
+
+.theme-switch-slider {
+  width: 40px;
+  height: 20px;
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.3s;
+  flex-shrink: 0;
+}
+
+.theme-switch-slider::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+#theme-switch:checked + .theme-switch-label .theme-switch-slider::before {
+  transform: translateX(20px);
 }

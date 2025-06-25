@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Blog</title>
+  <title>Add New Post</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
@@ -34,23 +34,26 @@
   </label>
   </div>
 
-  <h1>Welcome to My Blog!</h1>
+  <h1>Add a New Blog Post</h1>
 
-  <div class="add-post-button-container">
-    <a href="{{ url_for('add') }}" class="add-post-button">Add New Post</a>
-  </div>
-
-  <ul>
-    {% for post in posts %}
-    <li>
-      <div class="post">
-        <h2>{{ post["title"] }}</h2>
-        <p><em>Written by {{ post["author"] }}</em></p>
-        <p>{{ post["content"] }}</p>
-      </div>
-    </li>
-    {% endfor %}
-  </ul>
+  <form action="/add" method="post">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required />
+    </div>
+    <div>
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" required />
+    </div>
+    <div>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" rows="4" required></textarea>
+    </div>
+    <div class="form-buttons">
+      <a href="{{ url_for('index') }}" class="cancel-button same-size-button">Cancel</a>
+      <button type="submit" class="same-size-button">Add Post</button>
+    </div>
+  </form>
 
   <script>
     const checkbox = document.getElementById("theme-switch");
