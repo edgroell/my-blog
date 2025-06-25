@@ -39,6 +39,13 @@ def generate_unique_id(blog_posts):
     return max_id + 1
 
 
+def fetch_post_by_id(blog_posts, post_id):
+    for post in blog_posts:
+        if post["id"] == post_id:
+
+            return post
+
+
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
@@ -68,10 +75,34 @@ def delete(post_id):
     return redirect(url_for('index'))
 
 
+@app.route('/update/<int:post_id>', methods=['GET', 'POST'])
+def update(post_id):
+    blog_posts = fetch_data()
+    post = fetch_post_by_id(blog_posts, post_id)
+    if post is None:
+        # Post not found
+        return "Post not found", 404
+
+    if request.method == 'POST':
+        post['title'] = request.form.get('title')
+        post['author'] = request.form.get('author')
+        post['content'] = request.form.get('content')
+        save_data(blog_posts)
+
+        return redirect(url_for('index'))
+
+    return render_template('update.html', post=post)
+
+
 @app.route('/')
 def index():
     blog_posts = fetch_data()
     return render_template('index.html', posts=blog_posts)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 
 if __name__ == '__main__':

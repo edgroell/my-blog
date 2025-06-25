@@ -1,4 +1,3 @@
-
 /* =====================
    CSS for Blog App
    ===================== */
@@ -57,16 +56,9 @@ ul {
   margin-bottom: 25px;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
-}
-
-.post-actions {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post:hover {
@@ -77,7 +69,7 @@ ul {
 .post h2 {
   margin-top: 0;
   color: var(--primary-color);
-  border-bottom: 1px solid var(--neutral-border); /* ← this line */
+  border-bottom: 1px solid var(--neutral-border);
   padding-bottom: 10px;
 }
 
@@ -89,6 +81,13 @@ ul {
 .post em {
   font-style: italic;
   color: #888;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 /* Form Styling */
@@ -140,82 +139,71 @@ body.dark textarea {
   color: #f0f0f0;
 }
 
-/* Buttons */
-.form-buttons {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.action-button {
-  flex: 1;
-  min-width: 140px;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  text-decoration: none;
-}
-
-.cancel-button {
-  background-color: #e0e0e0;
-  color: #333;
-}
-
-.cancel-button:hover {
-  background-color: #d5d5d5;
-}
-
-body.dark .cancel-button {
-  background-color: #555;
-  color: #eee;
-}
-
-body.dark .cancel-button:hover {
-  background-color: #666;
-}
-
-.submit-button {
-  background-color: var(--primary-color);
-  color: #fff;
-}
-
-.submit-button:hover {
-  background-color: var(--primary-hover);
-}
-
-/* Delete Button (Inline on Post) */
-.delete-button {
-  align-self: flex-end;
-  margin-top: auto;
-  background-color: transparent;
-  color: #e74c3c;
-  border: 1px solid #e74c3c;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
+/* Shared Button Style */
+.action-button,
+.action-button:link,
+.action-button:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+  height: 40px;          /* exact height */
+  padding: 0 20px;       /* horizontal padding only */
+  line-height: 40px;     /* vertical center text */
   font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1.5px solid;   /* consistent border width */
+  text-decoration: none;
   transition: all 0.2s ease-in-out;
 }
 
-.delete-button:hover {
+/* Delete Button */
+.delete-button {
   background-color: #e74c3c;
   color: white;
+  border-color: #e74c3c;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
 }
 
 body.dark .delete-button {
-  color: #ff6b61;
+  background-color: #ff6b61;
+  color: black;
   border-color: #ff6b61;
 }
 
 body.dark .delete-button:hover {
-  background-color: #ff6b61;
-  color: black;
+  background-color: #e55042;
+  border-color: #e55042;
+}
+
+/* Update Button */
+.update-button {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.update-button:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+body.dark .update-button {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+body.dark .update-button:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 /* Add New Post Button */
@@ -239,7 +227,45 @@ body.dark .delete-button:hover {
   background-color: var(--primary-hover);
 }
 
-/* Dark Mode Toggle */
+/* Form Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Cancel & Submit Buttons */
+.cancel-button {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+}
+
+.cancel-button:hover {
+  background-color: #d5d5d5;
+}
+
+body.dark .cancel-button {
+  background-color: #555;
+  color: #eee;
+}
+
+body.dark .cancel-button:hover {
+  background-color: #666;
+}
+
+.submit-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+
+.submit-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Theme Toggle Switch */
 #theme-switch {
   display: none;
 }
